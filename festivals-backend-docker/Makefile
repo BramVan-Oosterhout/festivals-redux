@@ -34,6 +34,7 @@ intermediate/gw-install.sh:
 	curl -L -o intermediate/gw-install.sh https://github.com/Festivals-App/festivals-gateway/raw/main/operation/install.sh
 intermediate/is-install.sh:
 	curl -L -o intermediate/is-install.sh https://github.com/Festivals-App/festivals-identity-server/raw/master/operation/install.sh
+	sed -i -e 's!server/create_database.sql!server/install/create_database.sql!' intermediate/is-install.sh 
 intermediate/db-install.sh:
 	curl -L -o intermediate/db-install.sh https://github.com/Festivals-App/festivals-database/raw/main/operation/install_database.sh
 intermediate/db-install_node.sh: intermediate/db-install.sh
