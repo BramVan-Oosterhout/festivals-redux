@@ -28,8 +28,10 @@ restart: run
 ########### helpers
 clean:
 	-rm intermediate/*
+intermediate:
+	mkdir intermediate
 intermediate/is-install.sh:
-	curl -L -o is-intermediate/install.sh https://github.com/Festivals-App/festivals-identity-server/raw/master/operation/install.sh
+	curl -L -o intermediate/is-install.sh https://github.com/Festivals-App/festivals-identity-server/raw/master/operation/install.sh
 intermediate/db-install.sh:
 	curl -L -o intermediate/db-install.sh https://github.com/Festivals-App/festivals-database/raw/main/operation/install_database.sh
 intermediate/db-install_node.sh: intermediate/db-install.sh
