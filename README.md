@@ -7,3 +7,12 @@ This repository explores two activities needed to install the Festivals-App from
 
 Each directory contains a `Makefile` and a `README`
 
+## Quick start
+```
+git clone git@github.com:BramVan-Oosterhout/festivals-redux.git 
+cd festivals-redux/certificates/
+make init certs
+cd ../festivals-backend-docker/
+make base build restart
+```
+
