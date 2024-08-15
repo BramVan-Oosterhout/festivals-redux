@@ -1,4 +1,4 @@
-# Creating athe docker image and running the container
+# Creating the docker image and running the container
 
 ## The Makefile
 The docker image is built in two stages. 
