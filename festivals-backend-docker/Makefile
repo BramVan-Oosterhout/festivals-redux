@@ -1,4 +1,4 @@
-get: intermediate/db-install_node.sh intermediate/is-install.sh intermediate/fs-install.sh intermediate/fe-install.sh intermediate/gw-install.sh intermediate/insert_testdata.sql
+get: intermediate intermediate/db-install_node.sh intermediate/is-install.sh intermediate/fs-install.sh intermediate/fe-install.sh intermediate/gw-install.sh intermediate/insert_testdata.sql
 
 mycert:
 	cp ../certificates/pki/ca.crt intermediate/.
