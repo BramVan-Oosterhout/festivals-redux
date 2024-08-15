@@ -11,7 +11,7 @@ The Makefile is executed as follows:
 
 1. `make base` will:
    * `get` the listed `install.sh` scripts from `github` and save them in the `intermediate` directory
-   * build the `festivals` image as dexcribed in the `festivals.dck` dockerfile
+   * build the `festivals` image as described in the `festivals.dck` dockerfile
 
 2. `make build` will:
    * (mycerts target) copy the certificates generated in the `certificates` directory to the `intermediate` directory
