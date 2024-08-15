@@ -1,0 +1,43 @@
+FROM my/festivals
+
+ARG APP='Festivals-App'
+
+ARG DB_CERT=database-0.festivalsapp.dev.crt
+ARG DB_KEY=database-0.festivalsapp.dev.key
+ARG SV_CERT=festivals-0.festivalsapp.dev.crt
+ARG SV_KEY=festivals-0.festivalsapp.dev.key
+ARG FS_CERT=fileserver-0.festivalsapp.dev.crt
+ARG FS_KET=fileserver-0.festivalsapp.dev.key
+ARG GW_CERT=gateway.festivalsapp.dev.crt
+ARG GW_KEY=gateway.festivalsapp.dev.key
+ARG ID_CERT=identity-0.festivalsapp.dev.crt
+ARG ID_KEY=identity-0.festivalsapp.dev.key
+ARG WB_CERT=website-0.festivalsapp.dev.crt
+ARG WB_KEY=website-0.festivalsapp.dev.key
+
+WORKDIR /home/build
+
+################## Establish certificate authority ###
+COPY  intermediate/ca.crt /usr/local/share/ca-certificates/ca.crt
+RUN update-ca-certificates
+
+############### Configure Identity server ############
+COPY --chown=www-data:www-data etc.festivals-identity-server.conf /etc/festivals-identity-server.conf
+COPY --chown=www-data:www-data intermediate/ca.crt /usr/local/festivals-identity-server/ca.crt
+COPY --chown=www-data:www-data intermediate/${ID_CERT} /usr/local/festivals-identity-server/server.crt
+COPY --chown=www-data:www-data intermediate/${ID_KEY}  /usr/local/festivals-identity-server/server.key
+RUN openssl x509 -in /usr/local/festivals-identity-server/server.crt -out /usr/local/festivals-identity-server/public_key.pem -outform PEM
+RUN openssl rsa -in /usr/local/festivals-identity-server/server.key -text > /usr/local/festivals-identity-server/private_key.pem
+
+################ Gateway server #####################
+COPY --chown=www-data:www-data etc.festivals-gateway.conf /etc/festivals-gateway.conf
+COPY --chown=www-data:www-data intermediate/ca.crt /usr/local/festivals-gateway/ca.crt
+COPY --chown=www-data:www-data intermediate/${GW_CERT} /usr/local/festivals-gateway/server.crt
+COPY --chown=www-data:www-data intermediate/${GW_KEY}  /usr/local/festivals-gateway/server.key
+
+############### Container setup ####################
+COPY etc.hosts etc.hosts
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]

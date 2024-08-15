@@ -1,0 +1,14 @@
+# local development on this machine
+127.0.0.1       gateway.festivalsapp.dev
+127.0.0.1       identity-0.festivalsapp.dev
+127.0.0.1       festivals-0.festivalsapp.dev
+127.0.0.1       database-0.festivalsapp.dev
+127.0.0.1       fileserver-0.festivalsapp.dev
+127.0.0.1       website-0.festivalsapp.dev
+
+127.0.0.1       festivalsapp.dev
+127.0.0.1       www.festivalsapp.dev
+127.0.0.1       website.festivalsapp.dev
+127.0.0.1       discovery.festivalsapp.dev
+127.0.0.1       api.festivalsapp.dev
+127.0.0.1       files.festivalsapp.dev

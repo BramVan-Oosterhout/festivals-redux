@@ -1,0 +1,18 @@
+FROM ubuntu:22.04
+
+ARG APP='Festivals-App'
+WORKDIR /home/build
+
+RUN apt-get -y  update
+RUN apt-get -y install curl sudo ufw systemctl joe less iproute2
+
+
+############### Identity server
+COPY intermediate/is-install.sh is-install.sh 
+RUN chmod +x is-install.sh
+RUN ./is-install.sh insecure insecure insecure
+
+################ Gateway server #####################
+COPY intermediate/gw-install.sh gw-install.sh
+RUN chmod +x gw-install.sh
+RUN ./gw-install.sh
