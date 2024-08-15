@@ -30,6 +30,8 @@ clean:
 	-rm intermediate/*
 intermediate:
 	mkdir intermediate
+intermediate/gw-install.sh:
+	curl -L -o intermediate/gw-install.sh https://github.com/Festivals-App/festivals-gateway/raw/main/operation/install.sh
 intermediate/is-install.sh:
 	curl -L -o intermediate/is-install.sh https://github.com/Festivals-App/festivals-identity-server/raw/master/operation/install.sh
 intermediate/db-install.sh:
