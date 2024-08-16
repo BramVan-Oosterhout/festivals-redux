@@ -8,15 +8,20 @@ DOMAINS= gateway.festivalsapp.dev \
 		fileserver-0.festivalsapp.dev \
 		website-0.festivalsapp.dev
 		
-CERTIFICATES=$(patsubst %,%.crt,${DOMAINS})
+SERVER_CERTS=$(patsubst %,%.crt,${DOMAINS})
+CLIENT_CERTS=$(patsubst %,client.%.crt,${DOMAINS})
+
 
 vpath %.crt pki/issued
 	
-certs: ${CERTIFICATES}
+certs: ${SERVER_CERTS} ${CLIENT_CERTS}
 
-%.crt:
-	./easyrsa --passin=file:pwd --passout=file:pwd build-server-full $* nopass
-	
+${CLIENT_CERTS}: 
+	./easyrsa --passin=file:pwd --passout=file:pwd build-client-full $(subst .crt,,$@) nopass
+
+${SERVER_CERTS}:
+	./easyrsa --passin=file:pwd --passout=file:pwd build-server-full $(subst .crt,,$@) nopass
+
 init: easyrsa pwd
 	./easyrsa init-pki
 	./easyrsa --passout=file:pwd --passin=file:pwd build-ca

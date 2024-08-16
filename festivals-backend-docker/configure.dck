@@ -28,12 +28,14 @@ COPY --chown=www-data:www-data intermediate/${ID_CERT} /usr/local/festivals-iden
 COPY --chown=www-data:www-data intermediate/${ID_KEY}  /usr/local/festivals-identity-server/server.key
 RUN openssl x509 -in /usr/local/festivals-identity-server/server.crt -out /usr/local/festivals-identity-server/public_key.pem -outform PEM
 RUN openssl rsa -in /usr/local/festivals-identity-server/server.key -text > /usr/local/festivals-identity-server/private_key.pem
+RUN systemctl start mysql; sleep 1; \
+    mysql -e "INSERT INTO festivals_identity_database.service_keys  (service_key,service_key_comment) VALUES ('TEST_API_KEY_001',' just another guess as entry for test');"
 
 ################ Gateway server #####################
 COPY --chown=www-data:www-data etc.festivals-gateway.conf /etc/festivals-gateway.conf
 COPY --chown=www-data:www-data intermediate/ca.crt /usr/local/festivals-gateway/ca.crt
-COPY --chown=www-data:www-data intermediate/${GW_CERT} /usr/local/festivals-gateway/server.crt
-COPY --chown=www-data:www-data intermediate/${GW_KEY}  /usr/local/festivals-gateway/server.key
+COPY --chown=www-data:www-data intermediate/client.${GW_CERT} /usr/local/festivals-gateway/client.crt
+COPY --chown=www-data:www-data intermediate/client.${GW_KEY}  /usr/local/festivals-gateway/client.key
 
 ############### Container setup ####################
 COPY etc.hosts etc.hosts

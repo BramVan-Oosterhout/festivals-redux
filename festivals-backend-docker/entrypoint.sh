@@ -5,5 +5,6 @@ cat /home/build/etc.hosts >> /etc/hosts
 # start servers
 systemctl start mysql
 systemctl start festivals-identity-server
-# Keeps the container alive
+systemctl start festivals-gateway
+# Keeps the container alive 
 while true; do sleep 1s; done

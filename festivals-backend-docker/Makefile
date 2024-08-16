@@ -6,11 +6,10 @@ mycert:
 	cp ../certificates/pki/private/*.key intermediate/.
 
 base: get
-	docker build --progress=plain -f festivals.dck --tag my/festivals .
+	docker build --progress=plain --no-cache -f festivals.dck --tag my/festivals .
 
 build: mycert
-
-	docker build --progress=plain  -f configure.dck -t 'festivals-backend' .
+	docker build --progress=plain  --no-cache -f configure.dck -t 'festivals-backend' .
 
 run:
 	docker rm -f festivals
