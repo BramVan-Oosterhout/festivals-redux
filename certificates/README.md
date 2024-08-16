@@ -3,7 +3,7 @@
 To create the certificates you need to:
 1. `make init` which will:
    * install easyrsa, 
-   * create a pasword file with password 'insecure'
+   * create a password file with password 'insecure'
    * initialise the  easyrsa pki data structure
    * generate the certificate for the root CA
 
@@ -12,4 +12,4 @@ To create the certificates you need to:
 
 The certicates KEYs (including the CA key) are created in the `pki/private/` directory.
 
-The signed CRTs in the `pki/issued` directory, except for the root `ca.crt` which is in the `pki/` directory
+The signed CRTs are in the `pki/issued` directory, except for the root `ca.crt` which is in the `pki/` directory
