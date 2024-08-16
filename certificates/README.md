@@ -8,7 +8,7 @@ To create the certificates you need to:
    * generate the certificate for the root CA
 
 2. `make certs` which will:
-   * create the certificates for the servers listed in DOMAINS
+   * create the SERVER and CLIENT certificates for the servers listed in DOMAINS
 
 The certicates KEYs (including the CA key) are created in the `pki/private/` directory.
 
