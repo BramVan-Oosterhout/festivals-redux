@@ -8,7 +8,7 @@ mycert:
 base: get
 	docker build --progress=plain --no-cache -f festivals.dck --tag my/festivals .
 
-build: mycert
+build: intermediate mycert
 	docker build --progress=plain  --no-cache -f configure.dck -t 'festivals-backend' .
 
 run:

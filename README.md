@@ -1,4 +1,8 @@
 # festivals-redux
+An update now that I understand there are multiple types of certificates:
+client, server and clientServer. Festivals-App expect clientServer type
+certificates.
+
 An attempt to install Festivals-App from binaries in a docker container
 
 This repository explores two activities needed to install the Festivals-App from the binaries:

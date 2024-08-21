@@ -34,8 +34,8 @@ RUN systemctl start mysql; sleep 1; \
 ################ Gateway server #####################
 COPY --chown=www-data:www-data etc.festivals-gateway.conf /etc/festivals-gateway.conf
 COPY --chown=www-data:www-data intermediate/ca.crt /usr/local/festivals-gateway/ca.crt
-COPY --chown=www-data:www-data intermediate/client.${GW_CERT} /usr/local/festivals-gateway/client.crt
-COPY --chown=www-data:www-data intermediate/client.${GW_KEY}  /usr/local/festivals-gateway/client.key
+COPY --chown=www-data:www-data intermediate/${GW_CERT} /usr/local/festivals-gateway/client.crt
+COPY --chown=www-data:www-data intermediate/${GW_KEY}  /usr/local/festivals-gateway/client.key
 
 ############### Container setup ####################
 COPY etc.hosts etc.hosts
